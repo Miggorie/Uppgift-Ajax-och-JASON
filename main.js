@@ -26,7 +26,7 @@
 // Användaren skriver in en titel
 // Programmet söker efter filmen
 
-let userInput = $("#input");
+let input = $("#input");
 let fetchBtn = $("#fetchBtn");
 let ul = $("#ul");
 
@@ -34,20 +34,16 @@ fetchBtn.on("click", function () {
   let url = "http://www.omdbapi.com/?apikey=51741695&s=";
   console.log(url);
 
-  fetch(url + userInput)
+  fetch(url + input.val())
     .then((response) => response.json())
-
     .then((data) => {
       const list = data;
-
-      list.map((item) => {
-        const name = item.l;
-      });
+      const movie = `<li><img src="${poster}"><h2>${name}</h2></li>`;
+      console.log(list);
+    })
+    .catch((error) => {
+      console.log(error);
     });
-  userInput.value = "";
 });
 
-// .catch((error => {console.error(error);});
-
-// const movie = <li><img src="${poster}"><h2>${name}</h2></li>
-//  document.querySelector('.movies').innerHTML+= movie;
+//  $('#movies').html+= movie;
