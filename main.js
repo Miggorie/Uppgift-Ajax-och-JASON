@@ -30,20 +30,25 @@ let input = $("#input");
 let fetchBtn = $("#fetchBtn");
 let ul = $("#ul");
 
-fetchBtn.on("click", function () {
+fetchBtn.on("click", function (event) {
   let url = "http://www.omdbapi.com/?apikey=51741695&s=";
   console.log(url);
 
   fetch(url + input.val())
     .then((response) => response.json())
     .then((data) => {
-      const list = data;
-      const movie = `<li><img src="${poster}"><h2>${name}</h2></li>`;
       console.log(list);
+
+      $.map(data, function (item) {
+        const title = data.Search[0].Title;
+        const poster = item.poster;
+        const movie = `<li><img src="${poster}"><h2>${title}</h2></li>`;
+        console.log(title);
+
+        // $("#movies").append("movie");
+      });
     })
     .catch((error) => {
       console.log(error);
     });
 });
-
-//  $('#movies').html+= movie;
