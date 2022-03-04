@@ -12,7 +12,12 @@ img {
 li {
   list-style-type: none;
   display: flex;
-  justify-content: space-between;
+  align-items: left;
+  margin-left: -2rem;
+}
+
+p {
+  padding-left: 1rem;
 }
 
 .title {
