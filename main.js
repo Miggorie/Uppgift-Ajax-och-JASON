@@ -24,10 +24,13 @@
 // Send all data to: http://www.omdbapi.com/?apikey=51741695
 
 // Användaren skriver in en titel
-// Programmet söker efter filmen
+// Programmet söker efter filmer
+// Programmet uppdaterar automatiskt på sidan för varje bokstav.
+// Programmet visar titel, bild och text
 
 let input = $("#input");
 let fetchBtn = $("#fetchBtn");
+let clearBtn = $("#clearBtn");
 let ul = $("#ul");
 
 fetchBtn.on("click", function (event) {
@@ -37,18 +40,27 @@ fetchBtn.on("click", function (event) {
   fetch(url + input.val())
     .then((response) => response.json())
     .then((data) => {
-      console.log(list);
+      console.log(data);
+      console.log(data.Search);
+      const list = data.Search;
 
-      $.map(data, function (item) {
-        const title = data.Search[0].Title;
-        const poster = item.poster;
-        const movie = `<li><img src="${poster}"><h2>${title}</h2></li>`;
-        console.log(title);
+      let movieHTML = "";
+      for (let i = 0; i < list.length; i++) {
+        movieHTML += `<li>
+ <img src="${data.Search[i].Poster}" />
+<h2>${data.Search[i].Title}</h2>
+<p>${data.Search[i].Year}</p>
+ </li>`;
+      }
 
-        // $("#movies").append("movie");
-      });
+      $("#ul").append(movieHTML);
     })
     .catch((error) => {
       console.log(error);
     });
+  $("#input").val("");
+});
+
+clearBtn.on("click", function (event) {
+  $("ul").empty();
 });
