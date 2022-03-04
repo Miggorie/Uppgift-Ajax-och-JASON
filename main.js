@@ -35,7 +35,6 @@ let ul = $("#ul");
 
 fetchBtn.on("click", function (event) {
   let url = "http://www.omdbapi.com/?apikey=51741695&s=";
-  console.log(url);
 
   fetch(url + input.val())
     .then((response) => response.json())
@@ -47,7 +46,7 @@ fetchBtn.on("click", function (event) {
       let movieHTML = "";
       for (let i = 0; i < list.length; i++) {
         movieHTML += `<li>
- <img src="${data.Search[i].Poster}" />
+<img src="${data.Search[i].Poster}" />
 <h2>${data.Search[i].Title}</h2>
 <p>${data.Search[i].Year}</p>
  </li>`;

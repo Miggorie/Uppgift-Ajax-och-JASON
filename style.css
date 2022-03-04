@@ -1,0 +1,24 @@
+body {
+  background-color: black;
+  color: white;
+  text-decoration: none;
+}
+
+img {
+  width: 200px;
+  padding: 1rem;
+}
+
+li {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  font-style: italic;
+}
+
+.container {
+  border: 2px red;
+}
